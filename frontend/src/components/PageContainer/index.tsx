@@ -10,7 +10,7 @@ export default function PageContainer({ children }: PageContainerProps) {
   return (
     <>
       <Header />
-      <Container>{children}</Container>
+      <Container className="mt-5">{children}</Container>
     </>
   );
 }

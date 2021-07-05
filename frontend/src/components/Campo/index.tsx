@@ -1,6 +1,7 @@
 import { FormGroup, InputGroup, InputGroupAddon, InputGroupText, Label } from "reactstrap";
 import { Field } from "formik";
 import { InputHTMLAttributes } from "react";
+import { InputType } from "reactstrap/es/Input";
 
 interface CampoProps extends InputHTMLAttributes<HTMLInputElement> {
   htmlFor?: string;
@@ -14,6 +15,8 @@ interface CampoSelectProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   erro?: any;
   lista: any[];
+  type?: InputType;
+  className?: string;
 }
 
 export function Campo(props: CampoProps) {
@@ -26,12 +29,13 @@ export function Campo(props: CampoProps) {
           </InputGroupText>
         </InputGroupAddon>
         <Field
-          className="form-control"
+          className={props.className}
           render={props.renderMask}
+          type={props.type}
           {...props}
         />
-        <span>{props.erro}</span>
       </InputGroup>
+      <span>{props.erro}</span>
     </FormGroup>
   );
 }
@@ -55,8 +59,9 @@ export function CampoSelect(props: CampoSelectProps) {
             <option key={index} value={item}>{item}</option>
           ))}
         </Field>
-        <span>{props.erro}</span>
+        <br />
       </InputGroup>
+      <span>{props.erro}</span>
     </FormGroup>
   );
 }

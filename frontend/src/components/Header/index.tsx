@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Collapse, Nav, NavbarBrand, NavbarToggler, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { BsChatSquareDots, BsPersonFill } from "react-icons/bs";
-import '../../styles/scss/header/style.scss'
+import '../../styles/header.scss'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,10 +21,10 @@ export default function Header() {
           <Nav className="mr-auto" navbar>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Produtos
+                Games
               </DropdownToggle>
               <DropdownMenu right>
-                <Link className="nav-item-link" to="/produtos">
+                <Link className="nav-item-link" to="/games">
                   <DropdownItem>
                     Lista
                   </DropdownItem>
@@ -46,7 +46,9 @@ export default function Header() {
                     Nome
                   </span>
                 </DropdownItem>
-                <DropdownItem>Perfil</DropdownItem>
+                <DropdownItem>
+                  <Link className="nav-item-link" to={`/usuarios/${'1'}`}>Perfil</Link>
+                </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
                   <Link className="nav-item-link" to="/">Sair</Link>
