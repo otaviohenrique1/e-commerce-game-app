@@ -57,8 +57,7 @@ export default class Game {
     cascade: ['insert', 'update', 'remove']
   })
   @JoinColumn({ name: 'id_game' })
-  game_capa: GameCapa;
-
+  game_capa: GameCapa[];
 
   @OneToMany(() => GameGaleria, galeria => galeria.game, {
     cascade: ['insert', 'update', 'remove']

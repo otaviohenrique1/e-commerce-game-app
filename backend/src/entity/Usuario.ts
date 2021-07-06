@@ -46,7 +46,7 @@ export default class Usuario {
     cascade: ['insert', 'update']
   })
   @JoinColumn({ name: 'id_usuario' })
-  avatar_usuario: AvatarUsuario;
+  avatar_usuario: AvatarUsuario[];
 
   @Column()
   data_cadastro: Date;

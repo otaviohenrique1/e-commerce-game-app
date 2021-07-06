@@ -14,11 +14,7 @@ export class createFavorito1625510373371 implements MigrationInterface {
           generationStrategy: 'increment'
         },
         {
-          name: 'nome',
-          type: 'varchar'
-        },
-        {
-          name: 'id_produto',
+          name: 'id_game',
           type: 'integer'
         },
         {
@@ -28,10 +24,6 @@ export class createFavorito1625510373371 implements MigrationInterface {
         {
           name: 'favoritado',
           type: 'boolean'
-        },
-        {
-          name: 'categoria',
-          type: 'varchar'
         },
         {
           name: 'data_cadastro',
