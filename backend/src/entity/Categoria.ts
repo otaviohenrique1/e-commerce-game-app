@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from "typeorm";
+import Funcionario from "./Funcionario";
 
 @Entity()
 export default class Categoria {
@@ -7,11 +8,9 @@ export default class Categoria {
 
   @Column()
   nome: string;
-
-  @Column()
-  tipo: string;
   
-  @Column()
+  @OneToOne(() => Funcionario)
+  @JoinColumn()
   id_funcionario: number;
 
   @Column()

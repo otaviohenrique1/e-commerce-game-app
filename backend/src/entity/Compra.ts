@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from "typeorm";
+import Usuario from "./Usuario";
 
 @Entity()
 export default class Compra {
@@ -14,7 +15,8 @@ export default class Compra {
   @Column()
   total_preco: number;  
 
-  @Column()
+  @OneToOne(() => Usuario)
+  @JoinColumn()
   id_usuario: number;
 
   @Column()

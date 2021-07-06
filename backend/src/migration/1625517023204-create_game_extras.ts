@@ -78,6 +78,10 @@ export class createGameExtras1625517023204 implements MigrationInterface {
           type: 'datetime'
         },
         {
+          name: 'game_base',
+          type: 'varchar'
+        },
+        {
           name: 'id_game',
           type: 'integer'
         },

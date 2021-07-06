@@ -1,11 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from "typeorm";
+import Funcionario from "./Funcionario";
 
 @Entity()
 export default class Log {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @OneToOne(() => Funcionario)
+  @JoinColumn()
   id_funcionario: number;
 
   @Column()

@@ -1,14 +1,18 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from "typeorm";
+import Game from "./Game";
+import Usuario from "./Usuario";
 
 @Entity()
 export default class Favorito {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  id_produto: number;
+  @OneToOne(() => Game)
+  @JoinColumn()
+  id_game: number;
 
-  @Column()
+  @OneToOne(() => Usuario)
+  @JoinColumn()
   id_usuario: number;
 
   @Column()
