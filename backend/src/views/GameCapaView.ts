@@ -9,6 +9,6 @@ export default {
         // url: `http://localhost:3333/uploads/capa/${image.path}`,
     },
     renderMany(capas: GameCapa[]) {
-        return capas.map(capa => this.render(capa));
+      return capas.map(capa => this.render(capa));
     }
 };
