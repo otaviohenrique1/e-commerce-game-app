@@ -1,4 +1,8 @@
 import { Router } from "express";
+import multer from "multer";
+import uploadConfigAvatar from "./config/upload_avatar";
+import uploadConfigCapa from "./config/upload_capa";
+import uploadConfigGaleria from "./config/upload_galeria";
 import gameController from "./controllers/GameController";
 import funcionarioController from "./controllers/FuncionarioController";
 import desenvolvedorController from "./controllers/DesenvolvedorController";
@@ -11,9 +15,13 @@ import categoriaController from "./controllers/CategoriaController";
 
 const routes = Router();
 
+const uploadAvatar = multer(uploadConfigAvatar);
+const uploadCapa = multer(uploadConfigCapa);
+const uploadGaleria = multer(uploadConfigGaleria);
+
 routes.get('/games', gameController.index);
 routes.get('/games/:id', gameController.show);
-routes.post('/games', gameController.create);
+routes.post('/games', uploadCapa.array('game_capa'), uploadGaleria.array('game_galeria'), gameController.create);
 routes.put('/games/:id', gameController.update);
 routes.delete('/games/:id', gameController.delete);
 
@@ -27,7 +35,7 @@ routes.delete('/funcionarios/:id', funcionarioController.delete);
 routes.get('/usuarios', usuarioController.index);
 routes.get('/usuarios/:id', usuarioController.show);
 routes.post('/usuarios/login', usuarioController.login);
-routes.post('/usuarios', usuarioController.create);
+routes.post('/usuarios', uploadAvatar.array('avatar_imagens'), usuarioController.create);
 routes.put('/usuarios/:id', usuarioController.update);
 routes.delete('/usuarios/:id', usuarioController.delete);
 
