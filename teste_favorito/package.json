@@ -1,7 +1,7 @@
 {
    "name": "teste_favorito",
    "version": "0.0.1",
-   "description": "Awesome project developed with TypeORM.",
+   "description": "teste botao favorito",
    "keywords": [
       "Node",
       "Typescript",
@@ -30,6 +30,8 @@
       "yup": "^0.32.9"
    },
    "scripts": {
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/server.ts",
+      "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+      "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
    }
 }

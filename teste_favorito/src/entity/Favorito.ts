@@ -8,12 +8,12 @@ export default class Favorito {
   id: number;
 
   @OneToOne(() => Game)
-  @JoinColumn()
-  id_game: number;
+  @JoinColumn({ name: 'id_game' })
+  game: Game;
 
   @OneToOne(() => Usuario)
-  @JoinColumn()
-  id_usuario: number;
+  @JoinColumn({ name: 'id_usuario' })
+  usuario: Usuario;
 
   @Column()
   favoritado: boolean;

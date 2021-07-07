@@ -17,11 +17,11 @@ export default {
     return response.json(gameView.render(game));
   },
   async create(request: Request, response: Response) {
-    const { nome, data_cadastro } = request.body;
+    const { titulo, data_cadastro } = request.body;
     const gameRepository = getRepository(Game);
-    const data = { nome, data_cadastro };
+    const data = { titulo, data_cadastro };
     const schema = Yup.object().shape({
-      nome: Yup.string().required(),
+      titulo: Yup.string().required(),
       data_cadastro: Yup.date().required()
     });
     await schema.validate(data, {
@@ -38,11 +38,11 @@ export default {
     return response.status(200).json(game);
   },
   async update(request: Request, response: Response) {
-    const { id, nome } = request.body;
+    const { id, titulo } = request.body;
     const gameRepository = getRepository(Game);
-    const data = { nome };
+    const data = { titulo };
     const schema = Yup.object().shape({
-      nome: Yup.string().required()
+      titulo: Yup.string().required()
     });
     await schema.validate(data, {
       abortEarly: false

@@ -6,7 +6,7 @@ export default class Game {
   id: number;
 
   @Column()
-  nome: string;
+  titulo: string;
 
   @Column()
   data_cadastro: Date;
