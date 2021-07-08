@@ -1,24 +1,24 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import * as Yup from "yup";
-import Game from "../entity/Game";
-import gameView from "../views/GameView";
+import Games from "../entity/Games";
+import gameView from "../views/GamesView";
 
 export default {
   async index(request: Request, response: Response) {
-    const gameRepository = getRepository(Game);
+    const gameRepository = getRepository(Games);
     const game = await gameRepository.find();
-    return response.json(game);
+    return response.status(201).json(game);
   },
   async show(request: Request, response: Response) {
     const { id } = request.params;
-    const gameRepository = getRepository(Game);
+    const gameRepository = getRepository(Games);
     const game = await gameRepository.findOneOrFail(id);
-    return response.json(gameView.render(game));
+    return response.status(201).json(gameView.render(game));
   },
   async create(request: Request, response: Response) {
     const { titulo, data_cadastro } = request.body;
-    const gameRepository = getRepository(Game);
+    const gameRepository = getRepository(Games);
     const data = { titulo, data_cadastro };
     const schema = Yup.object().shape({
       titulo: Yup.string().required(),
@@ -33,13 +33,13 @@ export default {
   },
   async delete(request: Request, response: Response) {
     const { id } = request.params;
-    const gameRepository = getRepository(Game);
+    const gameRepository = getRepository(Games);
     const game = await gameRepository.delete(id);
-    return response.status(200).json(game);
+    return response.status(201).json(game);
   },
   async update(request: Request, response: Response) {
     const { id, titulo } = request.body;
-    const gameRepository = getRepository(Game);
+    const gameRepository = getRepository(Games);
     const data = { titulo };
     const schema = Yup.object().shape({
       titulo: Yup.string().required()

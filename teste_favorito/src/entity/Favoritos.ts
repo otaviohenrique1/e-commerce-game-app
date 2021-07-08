@@ -1,19 +1,19 @@
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from "typeorm";
-import Game from "./Game";
-import Usuario from "./Usuario";
+import Games from "./Games";
+import Usuarios from "./Usuarios";
 
 @Entity()
-export default class Favorito {
+export default class Favoritos {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => Game)
+  @OneToOne(() => Games)
   @JoinColumn({ name: 'id_game' })
-  game: Game;
+  game: Games;
 
-  @OneToOne(() => Usuario)
+  @OneToOne(() => Usuarios)
   @JoinColumn({ name: 'id_usuario' })
-  usuario: Usuario;
+  usuario: Usuarios;
 
   @Column()
   favoritado: boolean;

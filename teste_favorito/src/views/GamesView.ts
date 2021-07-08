@@ -1,7 +1,7 @@
-import Game from "../entity/Game";
+import Games from "../entity/Games";
 
 export default {
-  render(game: Game) {
+  render(game: Games) {
     return {
       id: game.id,
       titulo: game.titulo,

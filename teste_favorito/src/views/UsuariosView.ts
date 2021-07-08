@@ -1,7 +1,7 @@
-import Usuario from "../entity/Usuario";
+import Usuarios from "../entity/Usuarios";
 
 export default {
-  render(usuario: Usuario) {
+  render(usuario: Usuarios) {
     return {
       id: usuario.id,
       nome: usuario.nome,

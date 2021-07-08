@@ -1,11 +1,11 @@
-import Favorito from "../entity/Favorito";
+import Favoritos from "../entity/Favoritos";
 
 export default {
-  render(favorito: Favorito) {
+  render(favorito: Favoritos) {
     return {
       id: favorito.id,
-      id_game: favorito.id_game,
-      id_usuario: favorito.id_usuario,
+      id_game: favorito.game,
+      id_usuario: favorito.usuario,
       favoritado: favorito.favoritado,
       data_cadastro: favorito.data_cadastro,
     };
