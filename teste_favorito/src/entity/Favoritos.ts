@@ -17,7 +17,4 @@ export default class Favoritos {
 
   @Column()
   favoritado: boolean;
-
-  @Column()
-  data_cadastro: Date;
 }

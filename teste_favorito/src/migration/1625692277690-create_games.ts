@@ -16,11 +16,7 @@ export class createGame1625692277690 implements MigrationInterface {
         {
           name: 'titulo',
           type: 'varchar'
-        },
-        {
-          name: 'data_cadastro',
-          type: 'datetime'
-        },
+        }
       ]
     }));
   }

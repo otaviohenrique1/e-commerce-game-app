@@ -17,12 +17,11 @@ export default {
     return response.status(201).json(gameView.render(game));
   },
   async create(request: Request, response: Response) {
-    const { titulo, data_cadastro } = request.body;
+    const { titulo } = request.body;
     const gameRepository = getRepository(Games);
-    const data = { titulo, data_cadastro };
+    const data = { titulo };
     const schema = Yup.object().shape({
-      titulo: Yup.string().required(),
-      data_cadastro: Yup.date().required()
+      titulo: Yup.string().required()
     });
     await schema.validate(data, {
       abortEarly: false

@@ -17,20 +17,18 @@ export class createFavorito1625692311212 implements MigrationInterface {
           name: 'id_game',
           type: 'integer',
           unsigned: true,
+          isNullable: false,
         },
         {
           name: 'id_usuario',
           type: 'integer',
           unsigned: true,
+          isNullable: false,
         },
         {
           name: 'favoritado',
           type: 'boolean'
-        },
-        {
-          name: 'data_cadastro',
-          type: 'datetime'
-        },
+        }
       ],
       foreignKeys: [
         {

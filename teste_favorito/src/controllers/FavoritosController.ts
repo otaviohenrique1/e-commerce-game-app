@@ -17,14 +17,13 @@ export default {
     return response.json(favoritoView.render(favorito));
   },
   async create(request: Request, response: Response) {
-    const { id_game, id_usuario, favoritado, data_cadastro } = request.body;
+    const { id_game, id_usuario, favoritado } = request.body;
     const favoritoRepository = getRepository(Favoritos);
-    const data = { id_game, id_usuario, favoritado, data_cadastro };
+    const data = { id_game, id_usuario, favoritado };
     const schema = Yup.object().shape({
       id_game: Yup.number().required(),
       id_usuario: Yup.number().required(),
-      favoritado: Yup.boolean().required(),
-      data_cadastro: Yup.date().required()
+      favoritado: Yup.boolean().required()
     });
     await schema.validate(data, {
       abortEarly: false

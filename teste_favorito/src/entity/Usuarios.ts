@@ -7,7 +7,4 @@ export default class Usuarios {
 
   @Column()
   nome: string;
-
-  @Column()
-  data_cadastro: Date;
 }

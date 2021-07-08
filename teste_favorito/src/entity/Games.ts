@@ -7,7 +7,4 @@ export default class Games {
 
   @Column()
   titulo: string;
-
-  @Column()
-  data_cadastro: Date;
 }

@@ -16,11 +16,7 @@ export class createUsuario1625692296301 implements MigrationInterface {
         {
           name: 'nome',
           type: 'varchar'
-        }, 
-        {
-          name: 'data_cadastro',
-          type: 'datetime'
-        },
+        }
       ]
     }));
   }

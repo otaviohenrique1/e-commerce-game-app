@@ -6,8 +6,7 @@ export default {
       id: favorito.id,
       id_game: favorito.game,
       id_usuario: favorito.usuario,
-      favoritado: favorito.favoritado,
-      data_cadastro: favorito.data_cadastro,
+      favoritado: favorito.favoritado
     };
   }
 };

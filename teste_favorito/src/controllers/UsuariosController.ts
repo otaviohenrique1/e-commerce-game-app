@@ -17,12 +17,11 @@ export default {
     return response.json(usuarioView.render(usuario));
   },
   async create(request: Request, response: Response) {
-    const { nome, data_cadastro } = request.body;
+    const { nome } = request.body;
     const usuarioRepository = getRepository(Usuarios);
-    const data = { nome, data_cadastro };
+    const data = { nome };
     const schema = Yup.object().shape({
-      nome: Yup.string().required(),
-      data_cadastro: Yup.date().required()
+      nome: Yup.string().required()
     });
     await schema.validate(data, {
       abortEarly: false
