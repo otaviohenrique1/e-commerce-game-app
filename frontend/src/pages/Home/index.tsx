@@ -1,23 +1,28 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Button, Col, ListGroup, ListGroupItem, Row } from "reactstrap";
-import { BsFillStarFill } from "react-icons/bs";
+import { BsFillStarFill, BsDot } from "react-icons/bs";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import api from "../../services/api";
+import ReactPaginate from "react-paginate";
 
 type DataGamesProps = { 
   id: string;
   titulo: string;
 }
 
-// type DataUsuarioProps = { 
-//   id: string;
-//   nome: string;
-// }
-
 export function Home() {
   const [data, setData] = useState<DataGamesProps[]>([]);
-  // const [dataUsuario, setDataUsuario] = useState<DataUsuarioProps[]>([]);
+  const [page, setPage] = useState<number>(0);
   
+  const PER_PAGE = 10;
+  const offset = page * PER_PAGE;
+  const pageCount = Math.ceil(data.length / PER_PAGE);
+
+  function handlePageClick(selected: any) {
+    setPage(selected);
+  }
+
   useEffect(() => {
     api.get('games')
       .then((response) => {
@@ -29,34 +34,12 @@ export function Home() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   api.get('usuarios')
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       return setDataUsuario(response.data);
-  //     })
-  //     .catch((erro) => {
-  //       console.log(`Erro -> ${erro}`);
-  //     });
-  // }, []);
-
   return (
     <Row>
       <Col md={12}>
         <h1>Home</h1>
       </Col>
       <Col md={12}>
-        {/* <ListGroup>
-          {dataUsuario.map((item) => {
-            return (
-              <ListGroupItem
-                key={item.id}
-              >
-                {item.nome}
-              </ListGroupItem>
-            );
-          })}
-        </ListGroup> */}
         <ListGroup>
           {(!data) ? (
             <Row>
@@ -65,7 +48,9 @@ export function Home() {
               </Col>
             </Row>
           ) : (
-            data.map((item) => {
+            data
+              .slice(offset, offset + PER_PAGE)
+              .map((item) => {
               return (
                 <ListGroupItem
                   key={item.id}
@@ -83,6 +68,27 @@ export function Home() {
             })
           )}
         </ListGroup>
+      </Col>
+      <Col md={12}>
+        <ReactPaginate
+          previousLabel={<AiOutlineArrowLeft size={10} />}
+          nextLabel={<AiOutlineArrowRight size={10} />}
+          breakLabel={
+            <div>
+              <BsDot /><BsDot /><BsDot />
+            </div>
+          }
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          previousLinkClassName={"page-item"}
+          nextLinkClassName={"page-item"}
+          disabledClassName={"disabled"}
+          activeClassName={"active"}
+        />
       </Col>
     </Row>
   );
