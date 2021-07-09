@@ -8,13 +8,13 @@ export default {
   async index(request: Request, response: Response) {
     const usuarioRepository = getRepository(Usuarios);
     const usuario = await usuarioRepository.find();
-    return response.json(usuario);
+    return response.status(200).json(usuario);
   },
   async show(request: Request, response: Response) {
     const { id } = request.params;
     const usuarioRepository = getRepository(Usuarios);
     const usuario = await usuarioRepository.findOneOrFail(id);
-    return response.json(usuarioView.render(usuario));
+    return response.status(200).json(usuarioView.render(usuario));
   },
   async create(request: Request, response: Response) {
     const { nome } = request.body;

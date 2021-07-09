@@ -8,13 +8,23 @@ export default {
   async index(request: Request, response: Response) {
     const favoritoRepository = getRepository(Favoritos);
     const favorito = await favoritoRepository.find();
-    return response.json(favorito);
+    return response.status(200).json(favorito);
   },
   async show(request: Request, response: Response) {
     const { id } = request.params;
     const favoritoRepository = getRepository(Favoritos);
     const favorito = await favoritoRepository.findOneOrFail(id);
-    return response.json(favoritoView.render(favorito));
+    return response.status(200).json(favoritoView.render(favorito));
+  },
+  async showFavoriteByUser(request: Request, response: Response) {
+    const { id } = request.params;
+    const favoritoRepository = getRepository(Favoritos);
+    const favorito = await favoritoRepository
+      .createQueryBuilder('favoritos')
+      .select('id_game')
+      .where("id_usuario = :id", { id })
+      .getMany();
+    return response.status(200).json(favorito);
   },
   async create(request: Request, response: Response) {
     const { id_game, id_usuario, favoritado } = request.body;

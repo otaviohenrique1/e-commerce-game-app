@@ -21,5 +21,6 @@ routes.get('/favoritos/:id', favoritosController.show);
 routes.post('/favoritos', favoritosController.create);
 routes.put('/favoritos/:id', favoritosController.update);
 routes.delete('/favoritos/:id', favoritosController.delete);
+routes.get('/favoritos/usuario/:id_usuario', favoritosController.showFavoriteByUser);
 
 export default routes;

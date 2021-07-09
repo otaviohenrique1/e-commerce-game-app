@@ -8,13 +8,13 @@ export default {
   async index(request: Request, response: Response) {
     const gameRepository = getRepository(Games);
     const game = await gameRepository.find();
-    return response.status(201).json(game);
+    return response.status(200).json(game);
   },
   async show(request: Request, response: Response) {
     const { id } = request.params;
     const gameRepository = getRepository(Games);
     const game = await gameRepository.findOneOrFail(id);
-    return response.status(201).json(gameView.render(game));
+    return response.status(200).json(gameView.render(game));
   },
   async create(request: Request, response: Response) {
     const { titulo } = request.body;
@@ -34,7 +34,7 @@ export default {
     const { id } = request.params;
     const gameRepository = getRepository(Games);
     const game = await gameRepository.delete(id);
-    return response.status(201).json(game);
+    return response.status(200).json(game);
   },
   async update(request: Request, response: Response) {
     const { id, titulo } = request.body;

@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { Button, Col, ListGroup, ListGroupItem, Row } from "reactstrap";
-import { BsFillStarFill, BsStar } from "react-icons/bs";
+import { BsFillStarFill } from "react-icons/bs";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import api from "../../services/api";
+import api from "../../../services/api";
 import ReactPaginate from "react-paginate";
 import "../../styles/home.scss";
 import "../../styles/pagination.scss";
@@ -13,17 +13,12 @@ type DataGamesProps = {
   titulo: string;
 }
 
-type DataGamesFavoritadosProps = { 
-  id: number;
-}
-
-export function Home() {
+export function Home2() {
   const [data, setData] = useState<DataGamesProps[]>([]);
+  // const [page, setPage] = useState<number>(0);
   const [offset, setOffset] = useState(0);
   const [perPage] = useState(10);
   const [pageCount, setPageCount] = useState(0);
-  const [listaItemFavoritado, setListItemFavoritado] = useState<DataGamesFavoritadosProps[]>([]);
-  // const [itemFoiFavoritado, setItemFoiFavoritado] = useState<boolean>(false);
 
   const handlePageClick = (e: { selected: any; }) => {
     const selectedPage = e.selected;
@@ -41,30 +36,10 @@ export function Home() {
     });
   }, [data.length, perPage]);
 
-  useEffect(() => {
-    const id_usuario = 2;
-    api.get(`/favoritos/usuario/${id_usuario}`)
-      .then((response) => {
-        setListItemFavoritado(response.data);
-      })
-      .catch((erro) => {
-        console.log(`Erro -> ${erro}`);
-      });
-  }, []);
-
-  function itemFoiFavoritado(item: DataGamesProps) {
-    return listaItemFavoritado.filter((favorito) => favorito.id === parseInt(item.id));
-  }
-
   return (
     <Row>
       <Col md={12}>
         <h1>Home</h1>
-        {listaItemFavoritado.map((item) => {
-          return(
-            <div>{item.id}</div>
-          );
-        })}
       </Col>
       <Col md={12}>
         <ListGroup>
@@ -86,11 +61,7 @@ export function Home() {
                     <Col md={10} className="texto-item">{item.titulo}</Col>
                     <Col md={2} className="botao-item">
                       <Button color="primary">
-                        {(itemFoiFavoritado(item)) ? (
-                          <BsStar size={30} />
-                        ) : (
-                          <BsFillStarFill size={30} />
-                        )}
+                        <BsFillStarFill size={30} />
                       </Button>
                     </Col>
                   </Row>
